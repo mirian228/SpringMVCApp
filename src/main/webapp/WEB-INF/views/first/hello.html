@@ -2,14 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Hello</title>
+<meta charset="ISO-8859-1">
+<title>Hello</title>
 </head>
 
 <body>
 	<a href="/SpringMVCApp/first/goodbye">Say goodbye</a>
 	<p>Hello!</p>
 	<a href="/SpringMVCApp/second/exit">Exit</a>
+	<p>
+		<a href="/SpringMVCApp/first/hello?name=Mirian&surname=Surmanidze">Request
+			with parameters</a>
+	<p>
+	<p th:text="${message}"></p>
+
+
 
 </body>
 
