@@ -60,4 +60,42 @@ public class FirstController {
 		return "first/calculator";
 	}
 
+	@GetMapping("/calculator2")
+	public String calculatorPageSecond(@RequestParam(value = "a", required = false) Integer a,
+			@RequestParam(value = "b", required = false) Integer b,
+			@RequestParam(value = "action", required = false) String action, Model model) {
+
+		double result;
+		if ((action == null) == false) {
+			switch (action) {
+			case "multiplication":
+				result = a * b;
+				break;
+			case "division":
+				result = a / (double) b;
+				break;
+			case "addition":
+				result = a + b;
+				break;
+			case "substraction":
+				result = a - b;
+				break;
+			default:
+				result = 0;
+			}
+			
+			model.addAttribute("message", "Result of operation is: " + result);
+		
+		} else {
+			
+			model.addAttribute("message", "No Operation has been defined");
+		}
+		
+	
+
+		
+
+		return "first/calculator2";
+	}
+
 }
