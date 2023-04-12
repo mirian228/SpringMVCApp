@@ -1,9 +1,20 @@
 package com.proj.springweb.models;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class Person {
+	
 	private int id;
+	@NotEmpty(message = "Field should not be empty")
+	@Size(min = 2, max =30, message="Name should be between 2 and 30 characters")
 	private String name;
+	@Min(value =0, message ="Age can't be less than 0")
 	private int age;
+	@NotEmpty(message = "Email should not be empty")
+	@Email
 	private String email;
 
 	public Person() {
