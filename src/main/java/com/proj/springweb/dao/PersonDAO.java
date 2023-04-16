@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
@@ -32,8 +33,13 @@ public class PersonDAO {
 				new BeanPropertyRowMapper<>(Person.class)).stream().findAny().orElse(null);
 	}
 
+	public Optional<Person> getPersonWithEmail(String email) {
+		return jdbcTemplate.query("SELECT * FROM Person WHERE email=?", new Object[] { email },
+				new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
+	}
+
 	public void save(Person person) {
-		jdbcTemplate.update("INSERT INTO Person(name, age, email) VALUES(?, ?, ?)" ,person.getName(), person.getAge(),
+		jdbcTemplate.update("INSERT INTO Person(name, age, email) VALUES(?, ?, ?)", person.getName(), person.getAge(),
 				person.getEmail());
 	}
 
@@ -88,8 +94,8 @@ public class PersonDAO {
 		});
 
 		long after = System.currentTimeMillis();
-		
-		System.out.println("Time: " + (after-before));
+
+		System.out.println("Time: " + (after - before));
 	}
 
 	private List<Person> create1000People() {
