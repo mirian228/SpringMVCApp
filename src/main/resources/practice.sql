@@ -118,8 +118,8 @@ INSERT INTO Actor_Movie VALUES(6, 3);
 
 -- Cannot Insert Duplicates because our columns are Primary --
 INSERT INTO Actor_Movie VALUES(6, 3);
-
-
+-- Inner join Tables with many to many relationship --
+SELECT Actor.name, Movie.name FROM Actor JOIN actor_movie ON actor.actor_id = actor_movie.actor_id JOIN movie ON actor_movie.movie_id = movie.movie_id;
 
 
 SELECT * FROM Director;
