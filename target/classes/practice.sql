@@ -127,3 +127,5 @@ SELECT * FROM Movie;
 SELECT * FROM Citizen;
 SELECT * FROM Passport;
 SELECT * FROM Actor;
+SELECT * FROM Person;
+

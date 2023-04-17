@@ -1,5 +1,7 @@
 package com.proj.springweb.util;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -25,10 +27,10 @@ public class PersonValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		Person person = (Person) target;
-
-		if (personDAO.getPersonWithEmail(person.getEmail()).isPresent()) {
-			errors.rejectValue("email", "This email is already taken");
-		}
+        Optional<Person> targetPerson = personDAO.getPersonWithEmail(person.getEmail());
+        if (targetPerson.isPresent() && targetPerson.get().getId() != person.getId()){
+            errors.rejectValue("email", "", "this email is already taken");
+        }
 
 	}
 
